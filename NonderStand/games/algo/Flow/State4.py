@@ -1,5 +1,5 @@
 from NonderStand.lib.BaseState import BaseState
-#from NonderStand.games.algo.Flow.State1 import State1 as State1
+
 
 
 class State4(BaseState):
@@ -28,7 +28,10 @@ class State4(BaseState):
 
 
     def getNext(self, card=None):
-        print ("It's %s round\n" %(self.CurrentPlayer.name))
+        from NonderStand.games.algo.Flow.State1 import State1 as State1
+        if hasattr(self, 'CurrentPlayer') is False:
+            self.__class__ =  State1
+            return True
         if self.numberOfLivePlayer == 1:
             for  i in self.playerList:
                 if self.playerdict[i].isLoss is False:
@@ -37,6 +40,7 @@ class State4(BaseState):
             print ("Should not enter this section bug found\n")
 
         if self.CurrentPlayer.isLoss is False:
+            print ("It's %s round\n" %(self.CurrentPlayer.name))
             act = self.CurrentPlayer.action(True, self, card)
             while act.updateBoard():
                 act = self.CurrentPlayer.action(False, self, card)

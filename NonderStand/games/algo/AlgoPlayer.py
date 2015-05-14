@@ -13,6 +13,7 @@ class AlgoPlayer(BasePlayer):
     def action(self, isFirstguess, state ,card):
         act = AlgoAction(state, card)
         act.setProcedure(isFirstguess)
+        print ("player %s turn got card %s" %(self.name, card))
         return act
 
 

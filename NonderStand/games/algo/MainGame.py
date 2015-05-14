@@ -39,7 +39,8 @@ class MainGame(BaseGame):
     def start(self):
         while self._state.getNext(self.deck.giveCard()):
             continue
-
+        
+    
 
 if __name__ == '__main__':
     a = MainGame()
