@@ -31,15 +31,17 @@ class State3(BaseState):
         from NonderStand.games.algo.Flow.State4 import State4 as State4
         if self.numberOfLivePlayer == 1:
             for  i in self.playerList:
-                if self.playerdict[i].isLoss is False:
+                if self.playerdict[i].isLose is False:
                     print ("%s is winner!!!" %(i))
                     return False
             print ("Should not enter this section bug found\n")
 
-        if self.CurrentPlayer.isLoss is False:
+        if self.CurrentPlayer.isLose is False:
             print ("It's %s round\n" %(self.CurrentPlayer.name))
             act = self.CurrentPlayer.action(True, self, card)
             while act.updateBoard():
-                act = self.CurrentPlayer.action(False, self, card)
+                if self.numberOfLivePlayer == 1:
+                    break
+                act = self.CurrentPlayer.action(False, self, act.currentcard)
         self.__class__ =  State4
         return True

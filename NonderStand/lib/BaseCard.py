@@ -74,6 +74,9 @@ class BaseDeck():
     def __getitem__(self, val):
         return self.cards[val]
 
+            
+
+
 class Basecard():
 
     def __init__(self):

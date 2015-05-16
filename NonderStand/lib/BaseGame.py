@@ -1,5 +1,8 @@
 import sys
 import re
+from NonderStand.IOutil.test import getLine
+
+
 class BaseGame(object):
 
     playerlist = []
@@ -9,7 +12,7 @@ class BaseGame(object):
         print ("Welcome to join %s!!! Please enter the players" %(self.Name))
         print ("Example: Joe Charles Noner Howard")
         while(True):
-            players = sys.stdin.readline()
+            players = getLine()
             players = players.strip("\n")
             playerlist = re.split("\s", players)
             for i in playerlist:

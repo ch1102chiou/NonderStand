@@ -5,7 +5,7 @@ import re
 class AlgoPlayer(BasePlayer):
 
     def __init__(self, name):
-        self.isLoss = False
+        self.isLose = False
         super().__init__(name)
 
 

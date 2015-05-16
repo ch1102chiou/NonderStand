@@ -1,6 +1,8 @@
 import sys 
 import os
 import re
+from NonderStand.IOutil.test import getLine
+
 
 
 if __name__ == '__main__':
@@ -14,7 +16,7 @@ if __name__ == '__main__':
     ##
     while(True):
         print ("Select the game you want to play")
-        gameselect = sys.stdin.readline()
+        gameselect = getLine()
         gameselect = gameselect.strip("\n")
         if gameselect not in gamelist:
             print ("The game %s is not installed in this server" %(gameselect))
@@ -29,3 +31,6 @@ if __name__ == '__main__':
     game.getReady()
     game.setup()
     game.start()
+
+
+

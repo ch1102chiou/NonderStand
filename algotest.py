@@ -37,9 +37,11 @@ if __name__ == '__main__':
     dc = BaseDeck(AlgoCard, [t1, t2, t3])
     c.setCards(dc)
 
-    t1 = AlgoCard("white", 5)
+    
+    t1 = AlgoCard("black", 3)
     t2 = AlgoCard("black", 6)
-    t3 = AlgoCard("black", 3)
+    t3 = AlgoCard("white", 5)
+
     dg = BaseDeck(AlgoCard, [t1, t2, t3])
     game.deck = dg
 

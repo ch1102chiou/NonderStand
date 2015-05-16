@@ -90,10 +90,13 @@ class AlgoAction(BaseAction):
 
     def updateBoard(self):
         if self.continueguess is False:
-            self.state.CurrentPlayer.deck.cards.append(self.currentcard)
-            self.state.CurrentPlayer.deck.cards.sort()
-            self.state.CurrentPlayer.HP = self.state.CurrentPlayer.HP + 1
+            if self.currentcard not in self.state.CurrentPlayer.deck.cards:
+                self.state.CurrentPlayer.deck.cards.append(self.currentcard)
+                self.state.CurrentPlayer.deck.cards.sort()
+                self.state.CurrentPlayer.HP = self.state.CurrentPlayer.HP + 1
             return False
+        for i in self.state.playerdict[self.player].deck:
+            print (i)
         card = self.state.playerdict[self.player].deck.cards[self.index]
         print ("Answer card %d , guess %d" %(card.value,self.guessnumber))
         if card.value == self.guessnumber:
@@ -101,17 +104,18 @@ class AlgoAction(BaseAction):
             card.setPublic()
             self.state.playerdict[self.player].HP = self.state.playerdict[self.player].HP - 1
             if self.state.playerdict[self.player].HP == 0:
-                self.state.playerdict[self.player].isLosrr = True
+                self.state.playerdict[self.player].isLose = True
                 self.state.numberOfLivePlayer = self.state.numberOfLivePlayer - 1
-                print ("Player %s has no cards!")
+                print ("Player %s has no card!" %(self.state.playerdict[self.player].name))
             return True
         else:
             print ("Not Correct\n");
             if self.state.CurrentPlayer.HP == 0:
-                self.state.CurrentPlayer.isLoss = True
+                self.state.CurrentPlayer.isLose = True
                 print ("Player %s has no card!!!\n" %(state.name))
             self.currentcard.setPublic()
-            self.state.CurrentPlayer.deck.cards.append(self.currentcard)
+            if self.currentcard not in self.state.CurrentPlayer.deck.cards:
+                self.state.CurrentPlayer.deck.cards.append(self.currentcard)
             self.state.CurrentPlayer.deck.cards.sort()
             return False
 
